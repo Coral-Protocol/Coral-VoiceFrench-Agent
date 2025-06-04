@@ -47,12 +47,6 @@ Update `.env` with:
 Start the agent with voice input/output:
 
 ```bash
-uv run python main.py
-```
-
-Run in terminal (console) mode:
-
-```bash
 uv run python main.py console
 ```
 
