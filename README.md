@@ -1,75 +1,84 @@
+
 # Voice French Agent
 
-A real-time voice agent that listens to English speech and responds in French using AI-powered translation and text-to-speech technology.
+**Responsibility:**  
+A real-time multilingual voice assistant that listens to English speech and responds fluently in French. It uses Deepgram for speech-to-text, OpenAI for translation, ElevenLabs for French voice synthesis, and LiveKit for real-time communication with built-in noise cancellation.
 
-## Features
+## Details
 
-- **Real-time Speech Recognition**: Powered by Deepgram for accurate English speech-to-text
-- **AI Translation**: Uses OpenAI for intelligent English to French translation and conversation
-- **French Text-to-Speech**: ElevenLabs integration for natural French voice synthesis
-- **Noise Cancellation**: Built-in noise reduction for clearer audio processing
+- **Framework:** LiveKit Agents  
+- **Tools Used:** Deepgram STT, ElevenLabs TTS, OpenAI LLM, LiveKit Plugins  
+- **AI Model:** GPT-4  
+- **Date Added:** June 2025  
+- **License:** MIT  
+- **Original Source:** [Voice French Agent](https://github.com/livekit-examples/python-agents-examples/blob/main/translators/pipeline_translator.py)  
 
-## Installation
 
-### Install uv
+## Install Dependencies
+
 ```bash
 pip install uv
-```
-
-### Setup Project
-Clone the repository:
-```bash
-git clone https://github.com/your-username/voice-french-agent.git
-cd voice-french-agent
-```
-
-Install dependencies using uv:
-```bash
 uv sync
+````
+
+
+
+## Configure Environment Variables
+
+Copy the example file and add your API keys:
+
+```bash
+cp env.example .env
 ```
 
-This will create a virtual environment and install all required dependencies including:
-- livekit-agents[mcp,openai]~=1.0
-- livekit-plugins-noise-cancellation~=0.2
-- python-dotenv>=1.1.0
+Update `.env` with:
 
-Create a `.env` file with your API keys:
-```env
-DEEPGRAM_API_KEY=your_deepgram_api_key
-OPENAI_API_KEY=your_openai_api_key
-ELEVENLABS_API_KEY=your_elevenlabs_api_key
-LIVEKIT_URL=your_livekit_url
-LIVEKIT_API_KEY=your_livekit_api_key
-LIVEKIT_API_SECRET=your_livekit_api_secret
-```
+* `LIVEKIT_URL`
+* `LIVEKIT_API_KEY`
+* `LIVEKIT_API_SECRET`
+* `OPENAI_API_KEY`
+* `DEEPGRAM_API_KEY`
+* `ELEVENLABS_API_KEY`
 
-## API Keys
 
-Get your API keys from:
-- [Deepgram](https://deepgram.com/) - Speech recognition
-- [OpenAI](https://openai.com/) - AI translation
-- [ElevenLabs](https://elevenlabs.io/) - Text-to-speech
-- [LiveKit](https://livekit.io/) - Real-time communication
 
-## Running the Application
+## Run Agent
 
-### Start the Agent
+Start the agent with voice input/output:
+
 ```bash
 uv run python main.py
 ```
 
-### Terminal Mode
-Use this command to run it on terminal:
+Run in terminal (console) mode:
+
 ```bash
 uv run python main.py console
 ```
 
-## How It Works
-
-1. **Listen**: The agent captures your English speech using advanced speech recognition
-2. **Understand**: AI processes and translates your English input to French context
-3. **Respond**: The agent speaks back in fluent French using natural voice synthesis
 
 
+## Agent Capabilities
 
+* **English Speech Recognition** – via Deepgram
+* **AI Translation to French** – powered by OpenAI
+* **French Voice Output** – using ElevenLabs
+* **Noise Cancellation** – with LiveKit plugins
+
+
+## Example Usage
+
+1. Start the agent.
+2. Speak in English.
+3. The agent:
+
+   * Transcribes your speech.
+   * Translates to French.
+   * Responds in natural French voice.
+
+
+## Creator Details
+
+* **Name:** Ahsen Tahir
+* **Contact:** [ahsen.t@coralprotocol.org](mailto:ahsen.t@coralprotocol.org)
 
