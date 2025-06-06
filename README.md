@@ -28,7 +28,7 @@ uv sync
 Copy the example file and add your API keys:
 
 ```bash
-cp env.example .env
+cp .env.example .env
 ```
 
 Update `.env` with:
