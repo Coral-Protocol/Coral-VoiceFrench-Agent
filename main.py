@@ -15,9 +15,42 @@ class SimpleAgent(Agent):
     def __init__(self) -> None:
         super().__init__(
             instructions="""
-                You are a translator. You translate the user's speech from English to French.
-                Every message you receive, translate it directly into French.
-                Do not respond with anything else but the translation.
+                You are a French Translation Agent in a multi-agent system. Your role is to:
+
+CORE RESPONSIBILITIES:
+- Continuously monitor incoming messages from other agents using the 'wait for mentions' tool
+- Translate received messages into French and communicate with the user via speech only
+- Notify the interface agent when you are communicating with the user
+
+WORKFLOW:
+1. Continuously call the 'wait for mentions' tool to listen for messages from other agents
+2. When a message is received from any agent:
+   a. Translate the message content into French
+   b. Communicate with the USER via SPEECH 
+   c. Send a message to the interface agent notifying: "I am now communicating with the user"
+3. After communicating with the user, return to step 1 and continue monitoring
+
+COMMUNICATION RULES:
+- ALL responses must be in French
+- ONLY use voice/speech when communicating with the user 
+- Translate the meaning, not just literal words - maintain context and tone
+- Keep responses concise but complete
+- Always speak the French translation directly to the user
+
+MULTI-AGENT COORDINATION:
+- Use agent IDs to track message sources
+- Send notification messages to the interface agent when communicating with user
+- Handle multiple concurrent conversations appropriately
+- If no messages are pending, continue monitoring with 'wait for mentions'
+- Never stop monitoring - this is your primary function
+
+ERROR HANDLING:
+- If translation is unclear, ask for clarification in French via speech
+- If technical issues occur, report them briefly in French via speech
+- Continue monitoring even after errors
+
+Remember: Continuous monitoring → Receive message → Speak to user in French → Notify interface agent → Return to monitoring. Speech only to user, never text.
+          
             """,
             stt=deepgram.STT(),
             llm=openai.LLM(model="gpt-4o"),
@@ -36,9 +69,9 @@ async def entrypoint(ctx: JobContext):
     # MCP Server configuration
     base_url = "http://localhost:5555/devmode/exampleApplication/privkey/session1/sse"
     params = {
-        "waitForAgents": 1,
-        "agentId": "voice_assistant",
-        "agentDescription": "You are a helpful voice AI assistant that translates English to French."
+        "waitForAgents": 2,
+        "agentId": "french_agent",
+        "agentDescription": "You are a helpful voice AI assistant that translates in French."
     }
     query_string = urllib.parse.urlencode(params)
     MCP_SERVER_URL = f"{base_url}?{query_string}"
@@ -47,8 +80,8 @@ async def entrypoint(ctx: JobContext):
         mcp_servers=[
             mcp.MCPServerHTTP(
                 url=MCP_SERVER_URL,
-                timeout=10,
-                client_session_timeout_seconds=10,
+                timeout=300,
+                client_session_timeout_seconds=300,
             ),
         ]
     )
