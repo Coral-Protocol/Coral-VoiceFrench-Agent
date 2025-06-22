@@ -67,10 +67,10 @@ async def entrypoint(ctx: JobContext):
     await ctx.connect()
 
     # MCP Server configuration
-    base_url = "http://localhost:5555/devmode/exampleApplication/privkey/session1/sse"
+    base_url = os.getenv("CORAL_SSE_URL")
     params = {
         "waitForAgents": 2,
-        "agentId": "french_agent",
+        "agentId": os.getenv("CORAL_AGENT_ID"),
         "agentDescription": "You are a helpful voice AI assistant that translates in French."
     }
     query_string = urllib.parse.urlencode(params)
