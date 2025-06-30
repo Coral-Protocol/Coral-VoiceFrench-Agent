@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "deepgram-sdk>=4.1.0",
-    "livekit-agents[deepgram,elevenlabs,mcp,openai,rime,silero]~=1.0",
+    "livekit-agents[deepgram,elevenlabs,mcp,openai,rime,silero,groq]~=1.0",
     "livekit-plugins-noise-cancellation~=0.2",
     "python-dotenv>=1.1.0",
 ]

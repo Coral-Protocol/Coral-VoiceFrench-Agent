@@ -472,6 +472,9 @@ deepgram = [
 elevenlabs = [
     { name = "livekit-plugins-elevenlabs" },
 ]
+groq = [
+    { name = "livekit-plugins-groq" },
+]
 images = [
     { name = "pillow" },
 ]
@@ -527,6 +530,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/8e/8d/dd02f0dc7692bef15eb49ed658b53a9ff57ac073588b56fa270709b9d0e4/livekit_plugins_elevenlabs-1.0.23.tar.gz", hash = "sha256:ca22517ddd731083bc96b406fa7b940a3306e16d20b5c3f3edad77c98ea1654c", size = 8706 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/78/3d/f967fdfedfb3c98c4a987082a612f51a0411a9d04f4655b93a1df771a827/livekit_plugins_elevenlabs-1.0.23-py3-none-any.whl", hash = "sha256:3c84dabd6d7af7321582d6f8b91500996f1ea663939860ee483f332e6a6a8559", size = 10851 },
+]
+
+[[package]]
+name = "livekit-plugins-groq"
+version = "1.0.23"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "livekit" },
+    { name = "livekit-agents", extra = ["codecs"] },
+    { name = "livekit-plugins-openai" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/03/28/e9e76b62bfe137282de438124ebb80032e39a495b689bae092c2055f68e9/livekit_plugins_groq-1.0.23.tar.gz", hash = "sha256:183df5ceb0a9c92deee7545f74bd2b791ea309f936c77864fb5d80bed01b6bd3", size = 6030 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/19/0c/88076a25791215746895ddfef9c45a2eaf6415606b0ba8c5625f0b0adb80/livekit_plugins_groq-1.0.23-py3-none-any.whl", hash = "sha256:2a577f9f02a7c71631b46e97c49dd51f7939fc78f2da958a9c26bb8df890e8d7", size = 7092 },
 ]
 
 [[package]]
@@ -1116,7 +1134,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "deepgram-sdk" },
-    { name = "livekit-agents", extra = ["deepgram", "elevenlabs", "mcp", "openai", "rime", "silero"] },
+    { name = "livekit-agents", extra = ["deepgram", "elevenlabs", "groq", "mcp", "openai", "rime", "silero"] },
     { name = "livekit-plugins-noise-cancellation" },
     { name = "python-dotenv" },
 ]
@@ -1124,7 +1142,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "deepgram-sdk", specifier = ">=4.1.0" },
-    { name = "livekit-agents", extras = ["deepgram", "elevenlabs", "mcp", "openai", "rime", "silero"], specifier = "~=1.0" },
+    { name = "livekit-agents", extras = ["deepgram", "elevenlabs", "mcp", "openai", "rime", "silero", "groq"], specifier = "~=1.0" },
     { name = "livekit-plugins-noise-cancellation", specifier = "~=0.2" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
 ]

@@ -4,12 +4,27 @@ import urllib.parse
 from pathlib import Path
 from dotenv import load_dotenv
 from livekit.agents import JobContext, WorkerOptions, cli, AgentSession, Agent, RoomInputOptions, mcp
-from livekit.plugins import openai, silero, deepgram, elevenlabs
+from livekit.plugins import openai, silero, deepgram, elevenlabs, groq
 
 load_dotenv()
 
 logger = logging.getLogger("listen-and-respond")
 logger.setLevel(logging.INFO)
+
+def get_llm_instance():
+    """Get LLM instance based on environment configuration"""
+    llm_provider = os.getenv("LLM_PROVIDER", "openai").lower()
+    llm_model = os.getenv("LLM_MODEL", "gpt-4o")
+    api_key = os.getenv("API_KEY")
+    
+    if llm_provider == "openai":
+        return openai.LLM(model=llm_model, api_key=api_key)
+    elif llm_provider == "groq":
+        return groq.LLM(model=llm_model, api_key=api_key)
+    else:
+        # Add more providers as needed
+        logger.warning(f"Unsupported LLM provider: {llm_provider}. Falling back to OpenAI.")
+        return openai.LLM(model=llm_model, api_key=api_key)
 
 class SimpleAgent(Agent):
     def __init__(self) -> None:
@@ -53,7 +68,7 @@ Remember: Continuous monitoring → Receive message → Speak to user in French 
           
             """,
             stt=deepgram.STT(),
-            llm=openai.LLM(model="gpt-4o"),
+            llm=get_llm_instance(),
             tts=elevenlabs.TTS(
                 model="eleven_multilingual_v2"
             ),
