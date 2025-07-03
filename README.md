@@ -7,7 +7,7 @@ A real-time multilingual voice assistant that listens to English speech, transla
 
 ## Details
 - **Framework:** LiveKit Agents
-- **Tools Used:** Deepgram STT, ElevenLabs TTS, OpenAI LLM, LiveKit Plugins
+- **Tools Used:** Deepgram STT, ElevenLabs TTS, OpenAI/Groq LLM, LiveKit Plugins
 - **AI Model:** GPT-4
 - **Date Added:** June 2025
 - **License:** MIT
@@ -33,6 +33,17 @@ pip install uv
 # Install dependencies from `pyproject.toml` using `uv`:
 uv sync
 ```
+### Troubleshooting
+
+If you encounter errors related to post_writer, run these commands:
+
+```bash
+# Copy the client sse.py from utils to mcp package (Linux/ Mac)
+cp -r utils/sse.py .venv/lib/python3.13/site-packages/mcp/client/sse.py
+
+# OR Copy this for Windows
+cp -r utils\sse.py .venv\Lib\site-packages\mcp\client\sse.py
+```
 
 </details>
 
@@ -49,13 +60,14 @@ Update `.env` with:
 - `LIVEKIT_URL`  ([Get LiveKit Url](https://cloud.livekit.io/))
 - `LIVEKIT_API_KEY` ([Get LiveKit API Key](https://cloud.livekit.io/))
 - `LIVEKIT_API_SECRET` ([Get LiveKit API Secret](https://cloud.livekit.io/))
-- `OPENAI_API_KEY` ([Get OpenAI API Key](https://platform.openai.com/api-keys))
 - `DEEPGRAM_API_KEY` ([Get Deepgram API Key](https://deepgram.com/))
 - `ELEVENLABS_API_KEY` ([Get ElevenLabs API Key](https://elevenlabs.io/app/settings/api-keys))
+- `API_KEY` ([Get OpenAI API Key](https://platform.openai.com/api-keys)) /([Get GROQ API Key](https://console.groq.com/keys))
+- configure the LLM model you want to use
 
 </details>
 
-### 3. Run Agent
+### 3. Run Agent in Dev Mode
 <details>
 
 Start the agent with voice input/output:
@@ -63,13 +75,15 @@ Start the agent with voice input/output:
 ```bash
 uv run python main.py console
 ```
+If you want to run the Agent using [Coral-Studio UI](https://github.com/Coral-Protocol/coral-studio) you can do so but it may not support Voice input and outputs from the UI and only the messages sent using Coral tools will be visible.You
+clone it and run it according to the instructions in the readme and run this agent in your terminal.
 
 </details>
 
 ## Agent System
 
 - **English Speech Recognition:** via Deepgram
-- **AI Translation to French:** powered by OpenAI
+- **AI Translation to French:** powered by OpenAI/Groq
 - **French Voice Output:** using ElevenLabs
 - **Noise Cancellation:** with LiveKit plugins
 
