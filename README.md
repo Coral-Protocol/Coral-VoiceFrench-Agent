@@ -22,10 +22,10 @@ Ensure that the [Coral Server](https://github.com/Coral-Protocol/coral-server) i
 
 ```bash
 # In a new terminal clone the repository:
-git clone https://github.com/Coral-Protocol/Coral-Voice-French-Agent.git
+git clone https://github.com/Coral-Protocol/Coral-VoiceFrench-Agent.git
 
 # Navigate to the project directory:
-cd Coral-Voice-French-Agent
+cd Coral-VoiceFrench-Agent
 
 # Install `uv`:
 pip install uv
