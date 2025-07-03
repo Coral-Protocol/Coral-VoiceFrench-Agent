@@ -8,7 +8,6 @@ A real-time multilingual voice assistant that listens to English speech, transla
 ## Details
 - **Framework:** LiveKit Agents
 - **Tools Used:** Deepgram STT, ElevenLabs TTS, OpenAI/Groq LLM, LiveKit Plugins
-- **AI Model:** GPT-4
 - **Date Added:** June 2025
 - **License:** MIT
 - **Original Source:** [Voice French Agent](https://github.com/livekit-examples/python-agents-examples/blob/main/translators/pipeline_translator.py)
